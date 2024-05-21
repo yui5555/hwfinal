@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>靜宜大學周邊美食</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 10px;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        th {
+            background-color: #5a5a5a;
+            color: white;
+            cursor: pointer;
+        }
+        h1 {
+            text-align: center;
+        }
+        select {
+            padding: 4px;
+        }
+        .iframe-container {
+            width: 100%;
+            overflow: hidden;
+            padding-top: 56.25%;
+            position: relative;
+        }
+        .iframe-container iframe {
+            border: 0;
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }
+        .search-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .search-container input[type="text"] {
+            padding: 6px;
+            width: 200px;
+            margin-right: 10px;
+        }
+        .search-container button {
+            padding: 6px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>靜宜大學周邊美食</h1>
+        
+        <!-- 搜尋框 -->
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="搜尋店家名稱...">
+            <button onclick="searchTable()">搜尋</button>
+        </div>
+
+        <!-- 表格 -->
+        <table id="tblSales">
+            <thead>
+                <tr>
+                    <th class="tblColText" style="width:17.5%">店家名稱</th>
+                    <th class="tblColText" style="width:15%"><div onclick="sortTable(1)">距離靜宜大學(km)</div></th>
+                    <th class="tblColText" style="width:7.5%"><div onclick="sortTable(2)">星級評價</div></th>
+                    <th class="tblColText" style="width:20%" id="foodTypeHeader">食物種類</th>
+                    <th class="tblColText" style="width:20%" id="businessDayHeader">營業星期</th>
+                    <th class="tblColText" style="width:20%">營業時段</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td ><a href="張記麻辣大腸麵線.html">張記麻辣大腸麵線(靜宜店)</a></td>
+                    <td>0.7</td>
+                    <td>4.2</td>
+                    <td>小吃、羹、麵線</td>
+                    <td>一、三、二、五、四、日</td>
+                    <td>10:00-20:00</td>
+                </tr>
+
+                <tr>
+                    <td ><a href="刈包排骨飯.html">刈包排骨飯</a></td>
+                    <td>0.35</td>
+                    <td>4.6</td>
+                    <td>刈包、小吃、飯、麵</td>
+                    <td>一、三、二、五、六、四</td>
+                    <td>11:00-20:00</td>
+                </tr>
+                <tr>
+                    <td ><a href="苡瑄早餐店.html">苡瑄早餐店</a></td>
+                    <td>0.45</td>
+                    <td>4.3</td>
+                    <td>早餐</td>
+                    <td>一、三、二、五、六、四、日</td>
+                    <td>00:00-06:00、03:00-13:30</td>
+                </tr>
+                <tr>
+                    <td ><a href="Viet House 越南-台灣料理.html">Viet House 越南-台灣料理</a></td>
+                    <td>0.45</td>
+                    <td>4.3</td>
+                    <td>河粉、炒飯、炒麵、燴飯</td>
+                    <td>一、三、二、五、六、四、日</td>
+                    <td>10:30-21:00</td>
+                </tr>
+                <tr>
+                    <td ><a href="覓 · 鍋物.html">覓 · 鍋物</a></td>
+                    <td>0.4</td>
+                    <td>4.6</td>
+                    <td>火鍋</td>
+                    <td>一、三、二、五、六、四、日</td>
+                    <td>11:30-15:00、17:30-22:00</td>
+                </tr>
+                <tr>
+                    <td ><a href="深坑什麼鍋.html">深坑什麼鍋(靜宜店)</a></td>
+                    <td>0.5</td>
+                    <td>4.3</td>
+                    <td>火鍋</td>
+                    <td>一、三、二、五、六、四、日</td>
+                    <td>11:00-14:00、17:00-22:30</td>
+                </tr>
+                <tr>
+                    <td ><a href="沐鍋物.html">沐鍋物</a></td>
+                    <td>0.45</td>
+                    <td>4.8</td>
+                    <td>火鍋</td>
+                    <td>一、三、二、五、六、四、日</td>
+                    <td>11:00-00:00</td>
+                </tr>
+                <tr>
+                    <td ><a href="吳抄手.html">吳抄手</a></td>
+                    <td>0.35</td>
+                    <td>4.1</td>
+                    <td>湯麵、炒飯、炒麵、燴飯</td>
+                    <td>一、三、二、五、六、四、日</td>
+                    <td>11:00-14:00、17:00-20:30</td>
+                </tr>
+                <tr>
+                    <td ><a href="幸福中西式健康早點.html">幸福中西式健康早點</a></td>
+                    <td>0.35</td>
+                    <td>3.7</td>
+                    <td>早餐</td>
+                    <td>一、三、二、五、六、四</td>
+                    <td>06:30-13:30</td>
+                </tr>
+                <tr>
+                    <td ><a href="永村農 食堂.html">永村農 食堂</a></td>
+                    <td>0.45</td>
+                    <td>4.7</td>
+                    <td>炒飯、炒麵</td>
+                    <td>一、三、二、四、日</td>
+                    <td>11:00-14:00、16:30-21:00</td>
+                </tr>
+                <tr>
+                    <td ><a href="浪人鐵板燒.html">浪人鐵板燒(靜宜店)</a></td>
+                    <td>0.5</td>
+                    <td>3.9</td>
+                    <td>鐵板燒</td>
+                    <td>一、三、二、五、六、四、日</td>
+                    <td>11:00-22:00</td>
+                </tr>
+                <tr>
+                    <td ><a href="寬媽媽滷味.html">寬媽媽滷味</a></td>
+                    <td>0.5</td>
+                    <td>4.3</td>
+                    <td>滷味</td>
+                    <td>一、三、二、五、六、日</td>
+                    <td>16:00-04:00</td>
+                </tr>
+                <tr>
+                    <td ><a href="御青方麻辣臭豆腐.html">御青方麻辣臭豆腐</a></td>
+                    <td>0.7</td>
+                    <td>4.5</td>
+                    <td>火鍋</td>
+                    <td>一、二、三、四、五、六、日</td>
+                    <td>11:30-01:00</td>
+                </tr>
+                <tr>
+                    <td ><a href="風味屋鍋燒意麵.html">風味屋鍋燒意麵</a></td>
+                    <td>0.35</td>
+                    <td>4.5</td>
+                    <td>火鍋</td>
+                    <td>一、二、三、四、五、六、日</td>
+                    <td>11:00-14:00 16:00-19:00</td>
+                </tr>
+                <tr>
+                    <td ><a href="職火人.html">職火人</a></td>
+                    <td>0.4</td>
+                    <td>4.5</td>
+                    <td>串燒、丼飯</td>
+                    <td>一、三、四、五、六、日</td>
+                    <td>11:00-14:00 17:30-21:00</td>
+                </tr>
+
+            </tbody>
+        </table>
+        <br><br>
+        <div class="iframe-container">
+            <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1Ah7aA2MjNvGAWEroXMxKBaV2PTwZINY&ehbc=2E312F"></iframe>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let foodTypeHeader = document.querySelector('#foodTypeHeader');
+            let businessDayHeader = document.querySelector('#businessDayHeader');
+
+            foodTypeHeader.appendChild(generateDropdown());
+            businessDayHeader.appendChild(generateBusinessDayDropdown());
+        });
+
+        let selectedFilters = {
+            foodType: [],
+            businessDay: []
+        };
+
+        function generateDropdown() {
+            let select = document.createElement('select');
+
+            let emptyOption = document.createElement('option');
+            emptyOption.value = '';
+            emptyOption.textContent = '所有選項';
+            select.appendChild(emptyOption);
+
+            let data = ['小吃', '火鍋', '串燒', '丼飯', '滷味', '鐵板燒', '炒飯', '炒麵', '早餐', '湯麵', '燴飯', '河粉', '刈包', '羹', '麵線', '麵', '飯'];
+            data.forEach(data => {
+                let option = document.createElement('option');
+                option.value = data;
+                option.textContent = data;
+                select.appendChild(option);
+            });
+
+            select.addEventListener('change', function() {
+                selectedFilters.foodType = Array.from(this.selectedOptions).map(option => option.value);
+                filterTable();
+            });
+
+            return select;
+        }
+
+        function generateBusinessDayDropdown() {
+            let select = document.createElement('select');
+
+            let emptyOption = document.createElement('option');
+            emptyOption.value = '';
+            emptyOption.textContent = '所有選項';
+            select.appendChild(emptyOption);
+
+            let days = ['一', '二', '三', '四', '五', '六', '日'];
+            days.forEach(day => {
+                let option = document.createElement('option');
+                option.value = day;
+                option.textContent = day;
+                select.appendChild(option);
+            });
+
+            select.addEventListener('change', function() {
+                selectedFilters.businessDay = Array.from(this.selectedOptions).map(option => option.value);
+                filterTable();
+            });
+
+            return select;
+        }
+
+        function searchTable() {
+            let input = document.getElementById("searchInput");
+            let filter = input.value.toUpperCase();
+            let table = document.getElementById("tblSales");
+            let tr = table.getElementsByTagName("tr");
+
+            for (let i = 0; i < tr.length; i++) {
+                let td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    let txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        function filterTable() {
+            let table = document.querySelector('#tblSales');
+            let rows = table.getElementsByTagName('tr');
+
+            for (let i = 1; i < rows.length; i++) {
+                let cells = rows[i].getElementsByTagName('td');
+                let display = true;
+
+                // 食物種類筛选
+                if (selectedFilters.foodType.length > 0 && !selectedFilters.foodType.some(data => cells[3].textContent.includes(data)) && selectedFilters.foodType[0] !== '') {
+                    display = false;
+                }
+
+                // 營業星期筛选
+                if (selectedFilters.businessDay.length > 0 && !selectedFilters.businessDay.some(day => cells[4].textContent.includes(day)) && selectedFilters.businessDay[0] !== '') {
+                    display = false;
+                }
+
+                rows[i].style.display = display ? '' : 'none';
+           
+                 rows[i].style.display = display ? '' : 'none';
+            }
+        }
+
+        function sortTable(n) {
+            var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+            table = document.getElementById("tblSales");
+            switching = true;
+            dir = "asc"; 
+            while (switching) {
+                switching = false;
+                rows = table.rows;
+                for (i = 1; i < (rows.length - 1); i++) {
+                    shouldSwitch = false;
+                    x = rows[i].getElementsByTagName("TD")[n];
+                    y = rows[i + 1].getElementsByTagName("TD")[n];
+                    if (dir == "asc") {
+                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                            shouldSwitch= true;
+                            break;
+                        }
+                    } else if (dir == "desc") {
+                        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                }
+                if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                    switchcount ++;      
+                } else {
+                    if (switchcount == 0 && dir == "asc") {
+                        dir = "desc";
+                        switching = true;
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
